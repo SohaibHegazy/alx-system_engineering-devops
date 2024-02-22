@@ -2,8 +2,8 @@
 #display the string "Best School" 20 times
 #use case for no 4, 9 and 17
 
-i=0
-while [ $i -lt 20 ]
+i=1
+while [ $i -le 20 ]
 do
 	echo $i
 	case $i in
