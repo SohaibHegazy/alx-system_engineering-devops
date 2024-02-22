@@ -9,4 +9,5 @@ do
 	then
 		echo "Hi"
 	fi
+	(( i++ ))
 done
