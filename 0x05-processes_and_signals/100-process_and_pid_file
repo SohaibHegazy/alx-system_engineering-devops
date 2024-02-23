@@ -13,11 +13,9 @@ function terminate()
 	exit
 }
 
-trap "echo I hate the kill command
-terminate" SIGTERM
+trap "echo I hate the kill command;terminate" SIGTERM
 
-trap "echo Y U no love me?!
-terminate" SIGINT
+trap "echo Y U no love me?!;terminate" SIGINT
 
 while true
 do
