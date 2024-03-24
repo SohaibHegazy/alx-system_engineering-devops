@@ -1,22 +1,22 @@
 ![0-simple_web_stack](https://github.com/SohaibHegazy/alx-system_engineering-devops/assets/143375340/60f1ae8f-a3bf-40f2-90bb-6146bb7d0e78)
 
 What is a Server?
-A computer hardware or software that provides services to other computers, which are usually referred to as clients.
+A physical or virtual computer that runs an operating system (OS), and provides services to other computers, which are usually referred to as clients. Servers are usually located in data centers
 
 What is the role of the domain name?
-To provide a human-friendly alias for an IP Address. The IP address and domain name alias are mapped in the Domain Name System (DNS)
+To translate IP Address to human readable. The IP address and domain name alias are mapped in the Domain Name System (DNS)
 
 What type of DNS record www is in www.foobar.com?
-type of DNS record is "A record"
+type of DNS record is "A record" because it resolves to an IP Address
 
 What is the role of the web server?
-Web server receives the HTTP or HTTPS requests, and responds with the content or with an error message
+Web server receives the HTTP requests and responds with the webpages requested (static
 
 What is the role of the application server?
-To install, operate and host applications and associated services
+Hosts the logic of the program and responds with dynamic content
 
 What is the role of the database?
-To store collection of organized data and make is easy to access, manage, and update
+To store collection of organized data of the application, and make is easy to access, manage, and update
 
 What is the server using to communicate with the computer of the user requesting the website?
 TCP/IP protocol
