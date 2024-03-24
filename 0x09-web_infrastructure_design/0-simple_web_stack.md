@@ -1,3 +1,5 @@
+https://github.com/SohaibHegazy/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/0-simple_web_stack.jpg
+
 What is a Server?
 A computer hardware or software that provides services to other computers, which are usually referred to as clients.
 
