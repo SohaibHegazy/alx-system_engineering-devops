@@ -1,6 +1,7 @@
 #Using Puppet, install flask from pip3
-package { 'werkzeug.url':
-  ensure =>'installed',
+package { 'werkzeug':
+  ensure   =>'installed',
+  provider =>'pypi',
 }
 
 package { 'flask':
