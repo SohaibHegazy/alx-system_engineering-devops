@@ -1,5 +1,5 @@
 #Using Puppet, install flask from pip3
-package { 'werkzeug':
+package { 'werkzeug.url':
   ensure =>'installed',
 }
 
