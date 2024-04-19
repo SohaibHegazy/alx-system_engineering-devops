@@ -1,10 +1,6 @@
 #!/usr/bin/pup
 # Using Puppet, install flask from pip3.
 
-package { 'python':
-  ensure  =>'3,8,10',
-}
-
 package { 'werkzeug':
   ensure  =>'2.1.1',
 } 
