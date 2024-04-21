@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# a script to connect to alx server
+ssh -i ~/.ssh/school ubuntu@54.236.44.252
