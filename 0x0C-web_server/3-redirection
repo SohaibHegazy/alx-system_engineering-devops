@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
-# a Bash script to install Nginx on server
+# redirection configured to "301 Moved Permanently"
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo service nginx start
-sudo ufw allow 'Nginx HTTP'
-sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
-sudo sed -i '/location \/ {/a \
-    location /redirect_me { \
-        return 301 'https://www.youtube.com/watch?v=QH2-TGUlwu4'; \
-    }' /etc/nginx/sites-available/default
-sudo service nginx restart
+apt-get update
+apt-get install -y nginx
+
+mkdir /etc/nginx/html
+touch /etc/nginx/html/index.html
+echo "Hello Word!" > /etc/nginx/html/index.html
+printf %s "server {
+    listen 80;
+    listen [::]:80 default_server;
+    root   /etc/nginx/html;
+    index  index.html index.htm;
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+}" > /etc/nginx/sites-available/default
+
+service nginx restart
