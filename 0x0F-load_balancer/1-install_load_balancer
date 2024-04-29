@@ -17,8 +17,8 @@ frontend http
 
 backend sohaib_servers
         balance roundrobin
-        server 530989-web-01 54.236.44.252:80
-        server 530989-web-02 54.157.131.21:80
+        server 530989-web-01 54.236.44.252:80 check
+        server 530989-web-02 54.157.131.21:80 check
 " >> /etc/haproxy/haproxy.cfg
 
 service haproxy restart
