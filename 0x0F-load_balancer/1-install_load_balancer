@@ -6,11 +6,11 @@ sudo apt-get -y update
 sudo apt-get -y install haproxy=2.0.\*
 
 #provide access
-sudo chown -R "$USER":"$USER" /etc/haproxy/haproxy.cfg
-sudo chmod -R 777 /etc/haproxy/haproxy.cfg
+sudo chown -R "$USER":"$USER" /etc/default/haproxy.cfg
+sudo chmod -R 755 /etc/default/haproxy.cfg
 
 # HAproxy configuration
-echo "ENABLED=1" >> /etc/haproxy/haproxy
+echo "ENABLED=1" >> /etc/default/haproxy
 echo "
 frontend http
         bind 0:80
@@ -20,6 +20,6 @@ backend sohaib_servers
         balance roundrobin
         server 530989-web-01 54.236.44.252:80 check
         server 530989-web-02 54.157.131.21:80 check
-" >> /etc/haproxy/haproxy.cfg
+" >> /etc/default/haproxy.cfg
 
 service haproxy restart
