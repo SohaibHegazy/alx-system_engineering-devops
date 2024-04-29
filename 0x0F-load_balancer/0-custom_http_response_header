@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# config Nginx and add HTTP header X-Served-By $HOSTNAME
+
+# Install nginx on server
+apt-get update
+apt-get install -y nginx
+
+# Create index page
+mkdir -p /var/www/html
+touch /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.html
+
+# Create error page
+touch /var/www/html/404.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+
+# Add a page redirection to configuration file
+printf %s "server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+# Add the header to know which server is used
+    add_header X-Served-By $HOSTNAME;
+    root   /var/www/html;
+    index  index.html index.htm;
+    location /redirect_me {
+        return 301 https://www.youtube.com/;
+    }
+    error_page 404 /404.html;
+    location /404 {
+      root /var/www/html;
+      internal;
+    }
+}" > /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
