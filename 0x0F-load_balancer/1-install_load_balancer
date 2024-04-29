@@ -10,6 +10,7 @@ sudo chown -R "$USER":"$USER" /etc/haproxy/haproxy.cfg
 sudo chmod -R 777 /etc/haproxy/haproxy.cfg
 
 # HAproxy configuration
+echo "ENABLED=1" >> /etc/haproxy/haproxy
 echo "
 frontend http
         bind 0:80
