@@ -12,7 +12,7 @@ sudo chmod -R 777 /etc/haproxy/haproxy.cfg
 # HAproxy configuration
 echo "
 frontend http
-        bind *:80
+        bind 0:80
         default_backend sohaib_servers
 
 backend sohaib_servers
