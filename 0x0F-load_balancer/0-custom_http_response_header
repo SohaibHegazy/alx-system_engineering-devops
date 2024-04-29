@@ -7,9 +7,12 @@ sudo apt-get install -y nginx
 sudo ufw allow 'Nginx HTTP'
 
 # Create index page
-mkdir -p /var/www/html
-touch /var/www/html/index.html
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
 echo "Hello World!" > /var/www/html/index.html
+
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-enabled/default
+sudo chmod -R 777 /etc/nginx/sites-enabled/default
 
 # Create error page
 touch /var/www/html/404.html
