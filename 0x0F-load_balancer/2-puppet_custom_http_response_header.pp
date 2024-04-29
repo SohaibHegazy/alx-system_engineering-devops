@@ -1,3 +1,5 @@
+# Use Puppet to automate http header
+
 exec {'update':
   command => '/usr/bin/apt-get update',
 }
