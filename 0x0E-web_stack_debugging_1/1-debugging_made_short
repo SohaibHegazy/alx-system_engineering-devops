@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Make Nginx up and listen to port 80 and
-# service (init) must say that nginx is not running
+#Make Nginx server listen on port 80
 
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx start
