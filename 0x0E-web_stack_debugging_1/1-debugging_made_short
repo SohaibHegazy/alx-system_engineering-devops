@@ -3,7 +3,7 @@
 # service (init) must say that nginx is not running
 
 rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 service nginx start
 echo "Hello" > /run/nginx.pid
 echo "Hello" > /var/run/nginx.pid
