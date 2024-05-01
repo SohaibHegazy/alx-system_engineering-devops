@@ -4,5 +4,5 @@
 
 rm /etc/nginx/sites-enabled/default
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
-service nginx start
+service nginx restart
 rm /run/nginx.pid
