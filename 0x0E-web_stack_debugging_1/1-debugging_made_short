@@ -5,5 +5,4 @@
 rm /etc/nginx/sites-enabled/default
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 service nginx start
-echo "Hello" > /run/nginx.pid
-echo "Hello" > /var/run/nginx.pid
+rm /run/nginx.pid
