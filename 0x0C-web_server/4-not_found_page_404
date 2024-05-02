@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# config Nginx and add HTTP header X-Served-By $HOSTNAME
+
+# Install nginx on server
+sudo apt-get update
+sudo apt-get install -y nginx
+sudo ufw allow 'Nginx HTTP'
+
+# Create index page
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+echo "Hello World!" > /var/www/html/index.html
+
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-enabled/default
+sudo chmod -R 777 /etc/nginx/sites-enabled/default
+
+# Create error page
+touch /var/www/html/404.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+# Add a page redirection to configuration file
+sed -i '/index index.html index.htm index.nginx-debian.html;/a location /redirect_me { return 301 https://www.youtube.com/; } error_page 404 /404.html; location /404 { root /var/www/html; internal; }' /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
