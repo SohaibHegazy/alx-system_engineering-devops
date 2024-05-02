@@ -4,9 +4,9 @@
 display_ans ()
 {
     printf "The subdomain %s is a " "$2"
-    dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk { printf $4 }'
+    dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk '{ printf $4 }'
     printf " record and points to "
-    dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk { printf $5 }'
+    dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk '{ printf $5 }'
     echo ""
 }
 
