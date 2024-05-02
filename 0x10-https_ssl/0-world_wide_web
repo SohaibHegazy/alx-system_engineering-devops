@@ -10,11 +10,11 @@ display_ans ()
     echo ""
 }
 
-if [ "$#" -eq 2]; then
-	display_ans "$1" "$2"
+if [ -z "$2" ]; then
+   for subs in "www" "lb-01" "web-01" "web-02"
+   do
+       display_ans "$1" "$subs"
+   done
 else
-	for subs in "www" "lb-01" "web-01" "web-02"
-	do
-	display_ans "$1" "$subs"
-	done
+    display_ans "$1" "$2"
 fi
