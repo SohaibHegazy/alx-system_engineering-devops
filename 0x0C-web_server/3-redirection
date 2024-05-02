@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
 # redirection configured to "301 Moved Permanently"
 
-apt-get update
-apt-get install -y nginx
+# Install nginx on server
+sudo apt-get update
+sudo apt-get install -y nginx
+sudo ufw allow 'Nginx HTTP'
 
-mkdir /etc/nginx/html
-touch /etc/nginx/html/index.html
+# Create index page
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+echo "Hello World!" > /var/www/html/index.html
+
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-enabled/default
+sudo chmod -R 777 /etc/nginx/sites-enabled/default
+
+
 echo "Hello Word!" > /etc/nginx/html/index.html
 sudo sed -i '/index index.html index.htm index.nginx-debian.html;/a \
     location /redirect_me {\
