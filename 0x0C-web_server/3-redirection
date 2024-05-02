@@ -16,10 +16,7 @@ sudo chmod -R 777 /etc/nginx/sites-enabled/default
 
 
 echo "Hello Word!" > /etc/nginx/html/index.html
-sudo sed -i '/index index.html index.htm index.nginx-debian.html;/a \
-    location /redirect_me {\
-        return 301 https://www.youtube.com/;\
-    }' /etc/nginx/sites-enabled/default
+sudo sed -i '/index index.html index.htm index.nginx-debian.html;/a\location /redirect_me {return 301 https://www.youtube.com/;}' /etc/nginx/sites-enabled/default
 
 
 service nginx restart
