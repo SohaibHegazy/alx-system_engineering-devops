@@ -14,7 +14,7 @@ def number_of_subscribers(subreddit):
     in Reddit, it returns 0 if invalid subbreddit is passed
     '''
     url = ("https://www.reddit.com/r/{}/about.json".format(subreddit))
-    headers = {'User-Agent': 'Mozilla/5.0'}
+    headers = {'User-Agent': 'linux:sm.api.advanced:v1.0.0 (by /u/sm_grit)'}
 
     try:
         response = requests.get(url, headers=headers, allow_redirects=False)
@@ -22,6 +22,8 @@ def number_of_subscribers(subreddit):
             data = response.json()
             return data['data']['subscribers']
         else:
+            print("Unexpected status code: {}".format(response.status_code))
             return 0
-    except requests.RequestException:
+    except requests.RequestException as e:
+        print("Request exception: {}".format(e))
         return 0
