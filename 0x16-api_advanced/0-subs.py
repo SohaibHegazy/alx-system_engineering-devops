@@ -5,6 +5,7 @@ the number of subscribers (not active users, total
 subscribers) for a given subreddit.
 If an invalid subreddit is given, the function should return 0.
 '''
+import requests
 
 
 def number_of_subscribers(subreddit):
@@ -12,7 +13,6 @@ def number_of_subscribers(subreddit):
     a function to get the total number of subscribers
     in Reddit, it returns 0 if invalid subbreddit is passed
     '''
-    import requests
     
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
     headers = {'User-Agent': 'CustomClient/1.0'}
