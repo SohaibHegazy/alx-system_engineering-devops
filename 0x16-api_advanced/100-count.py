@@ -12,11 +12,11 @@ def count_words(subreddit, word_list, after=None, counts={}):
     if after == "":
         sorted_counts = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
         for word, count in sorted_counts:
-            print(f"{word}: {count}")
+            print(f"{}: {}".format(word, count))
         return
 
     # Set the URL and headers
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    url = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit) 
     headers = {
         "User-Agent": "linux:sm.api.advanced:v1.0.0 (by /u/sm_grit)"
     }
