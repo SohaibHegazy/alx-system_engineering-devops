@@ -1,61 +1,54 @@
 #!/usr/bin/python3
-'''
-Recursive function that queries the Reddit API,
-parses the title of all hot articles, and prints
-a sorted count of given keywords
-'''
+'''Recursive function that queries the Reddit API, parses the title of all
+hot articles, and prints a sorted count of given keywords.'''
 
 import requests
 
 
-def count_words(subreddit, word_list, sorted_count={}, after="", count=0):
-    '''
-    Function to count occurrences of keywords in hot articles titles.
-    '''
+def count_words(subreddit, word_list, after=None, counts={}):
+    '''Function to count occurrences of keywords in hot articles titles'''
 
-    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
+    # Base case: when all posts have been processed
+    if after == "":
+        sorted_counts = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
+        for word, count in sorted_counts:
+            print("{}: {}".format(word, count))
+        return
+
+    # Set the URL and headers
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     headers = {
         "User-Agent": "linux:sm.api.advanced:v1.0.0 (by /u/sm_grit)"
     }
 
-    params = {
-        "after": after,
-        "count": count,
-        "limit": 100
-    }
-
-    response = requests.get(
-                url, headers=headers, params=params, allow_redirects=False)
+    # Define the parameters for the API request
+    params = {'limit': 100, 'after': after}
 
     try:
-        results = response.json()
-        if response.status_code == 404:
-            raise Exception
-    except Exception:
-        print("")
-        return
+        # Send the request to Reddit API
+        response = requests.get(url, headers=headers,
+                                params=params, allow_redirects=False)
 
-    results = results.get("data")
-    after = results.get("after")
-    count += results.get("dist")
+        # Check for successful response
+        if response.status_code == 200:
+            data = response.json()
+            posts = data.get("data", {}).get("children", [])
 
-    for c in results.get("children"):
-        title = c.get("data").get("title").lower().split()
-        for word in word_list:
-            if word.lower() in title:
-                times = len([t for t in title if t == word.lower()])
-                if sorted_count.get(word) is None:
-                    sorted_count[word] = times
-                else:
-                    sorted_count[word] += times
+            # Process each post
+            for post in posts:
+                title = post.get("data", {}).get("title", "").lower()
 
-    if after is None:
-        if len(sorted_count) == 0:
-            print("")
-            return
-        sorted_count = sorted(
-                        sorted_count.items(), key=lambda kv: (-kv[1], kv[0]))
-        for k, v in sorted_count:
-            print("{}: {}".format(k, v))
-    else:
-        count_words(subreddit, word_list, sorted_count, after, count)
+                # Count occurrences of keywords in the title
+                for word in word_list:
+                    if title.count(word.lower()) > 0:
+                        counts[word.lower()] = counts.get(word.lower(), 0) + 1
+
+            # Call the function recursively with the next page's after value
+            count_words(
+             subreddit, word_list, data.get("data", {}).get("after"), counts)
+        elif response.status_code == 404:
+            print(None)
+        else:
+            print(None)
+    except requests.RequestException:
+        print(None)
