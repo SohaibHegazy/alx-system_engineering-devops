@@ -16,7 +16,8 @@ def count_words(subreddit, word_list, after=None, counts={}):
         return
 
     # Set the URL and headers
-    url = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit) 
+    url = "https://www.reddit.com/r/{}/hot.json?limit=10".format(
+           subreddit)
     headers = {
         "User-Agent": "linux:sm.api.advanced:v1.0.0 (by /u/sm_grit)"
     }
