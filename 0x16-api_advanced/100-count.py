@@ -44,7 +44,8 @@ def count_words(subreddit, word_list, after=None, counts={}):
                         counts[word.lower()] = counts.get(word.lower(), 0) + 1
 
             # Call the function recursively with the next page's after value
-            count_words(subreddit, word_list, data.get("data", {}).get("after"), counts)
+            count_words(subreddit, word_list, data.get(
+                        "data", {}).get("after"), counts)
         elif response.status_code == 404:
             print(None)
         else:
