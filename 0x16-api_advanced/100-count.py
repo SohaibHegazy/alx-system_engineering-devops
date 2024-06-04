@@ -32,6 +32,10 @@ def count_words(subreddit, word_list, after=None, counts=None):
             data = response.json().get("data", {})
             posts = data.get("children", [])
 
+            if not posts:
+                print(None)
+                return
+
             for post in posts:
                 title = post.get("data", {}).get("title", "").lower()
 
@@ -40,9 +44,8 @@ def count_words(subreddit, word_list, after=None, counts=None):
                         counts[word.lower()] = counts.get(word.lower(), 0) + 1
 
             count_words(subreddit, word_list, data.get("after"), counts)
-        elif response.status_code == 404:
-            print(None)
         else:
             print(None)
     except requests.RequestException:
         print(None)
+
