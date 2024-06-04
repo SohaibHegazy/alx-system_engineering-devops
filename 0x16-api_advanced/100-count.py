@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 '''Recursive function that queries the Reddit API, parses the title of all
 hot articles, and prints a sorted count of given keywords.'''
-
 import requests
 
 
@@ -27,7 +26,7 @@ def count_words(subreddit, word_list, after=None, counts=None):
             posts = data.get("children", [])
 
             if not posts:
-                print(None)
+                print("")
                 return
 
             for post in posts:
@@ -46,6 +45,6 @@ def count_words(subreddit, word_list, after=None, counts=None):
                 for word, count in sorted_counts:
                     print("{}: {}".format(word, count))
         else:
-            print(None)
+            print("")
     except requests.RequestException:
-        print(None)
+        print("")
