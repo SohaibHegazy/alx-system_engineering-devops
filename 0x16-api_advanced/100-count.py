@@ -48,4 +48,3 @@ def count_words(subreddit, word_list, after=None, counts=None):
             print(None)
     except requests.RequestException:
         print(None)
-
