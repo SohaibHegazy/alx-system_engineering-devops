@@ -13,14 +13,14 @@ def number_of_subscribers(subreddit):
     a function to get the total number of subscribers
     in Reddit, it returns 0 if invalid subbreddit is passed
     '''
-    url = f"https://api.reddit.com/r/{subreddit}/about.json"
+    url = f"https://api.reddit.com/r/{subreddit}/about"
     headers = {'User-Agent': 'CustomClient/1.0'}
     response = requests.get(url, headers=headers, allow_redirects=False)
         
     if response.status_code != 200:
-      return (0)
+	return (0)
     response = response.json()
     if 'data' in response:
-      return (response.get('data').get('subscribers'))
+	return (response.get('data').get('subscribers'))
     else:
-      return (0)
+	return (0)
