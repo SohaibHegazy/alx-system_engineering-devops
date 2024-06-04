@@ -13,7 +13,7 @@ def number_of_subscribers(subreddit):
     a function to get the total number of subscribers
     in Reddit, it returns 0 if invalid subbreddit is passed
     '''
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    url = ("https://www.reddit.com/r/{}/about.json".format(subreddit))
     headers = {'User-Agent': 'Mozilla/5.0'}
 
     try:
