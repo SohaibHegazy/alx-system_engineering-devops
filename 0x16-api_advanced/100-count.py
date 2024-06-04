@@ -11,12 +11,6 @@ def count_words(subreddit, word_list, after=None, counts=None):
     if counts is None:
         counts = {}
 
-    if after == "":
-        sorted_counts = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
-        for word, count in sorted_counts:
-            print("{}: {}".format(word, count))
-        return
-
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     headers = {
         "User-Agent": "linux:sm.api.advanced:v1.0.0 (by /u/sm_grit)"
@@ -43,7 +37,14 @@ def count_words(subreddit, word_list, after=None, counts=None):
                     if title.count(word.lower()) > 0:
                         counts[word.lower()] = counts.get(word.lower(), 0) + 1
 
-            count_words(subreddit, word_list, data.get("after"), counts)
+            after = data.get("after")
+            if after:
+                count_words(subreddit, word_list, after, counts)
+            else:
+                sorted_counts = sorted(
+                                 counts.items(), key=lambda x: (-x[1], x[0]))
+                for word, count in sorted_counts:
+                    print("{}: {}".format(word, count))
         else:
             print(None)
     except requests.RequestException:
