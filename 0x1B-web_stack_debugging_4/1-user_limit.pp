@@ -2,7 +2,7 @@
 
 #Fix soft files limit
 exec {'set soft files limit'
-  command => 'sed -i "/holberton soft/s/4/10000/" /etc/security/limits.conf',
+  command => 'sed -i "/holberton soft/s/4/9000/" /etc/security/limits.conf',
   path    => '/usr/local/bin/:/bin/'
 }
 
